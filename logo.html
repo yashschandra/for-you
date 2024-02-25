@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Transparent Image with Text</title>
+</head>
+<body>
+<canvas id="myCanvas" width="428" height="69"></canvas>
+<button onclick="downloadCanvas()">Download Image</button>
+<script>
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+
+    // Set background to transparent
+    ctx.fillStyle = "rgba(0, 0, 0, 0)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Set text properties
+    ctx.font = "66px Arial"; // Basic HTML font
+    ctx.fillStyle = "white";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+
+    // Position text in the center
+    var text = "For You";
+    var x = canvas.width / 2;
+    var y = canvas.height / 2;
+    ctx.fillText(text, x, y);
+
+    function downloadCanvas() {
+        // Convert canvas to image
+        var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+
+        // Create a temporary link and click it to trigger download
+        var link = document.createElement('a');
+        link.download = "for_you.png";
+        link.href = image;
+        link.click();
+    }
+</script>
+</body>
+</html>
